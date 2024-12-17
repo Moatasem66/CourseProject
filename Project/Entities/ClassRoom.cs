@@ -7,5 +7,5 @@ public class ClassRoom
     public int Capacity { get; set; }
     public string Location { get; set; }
     public Course? Course { get; set; } 
-    public int CourseId { get; set; } 
+    
 }

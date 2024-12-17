@@ -9,7 +9,7 @@ public class Course
     public string Description { get; set; } = string.Empty;
     public int CourseHour { get; set; }
     public int DepartmentId { get; set; }
-    public int ClassRoomId { get; set; }
+    public int? ClassRoomId { get; set; }
     public int InstructorId { get; set; }
     public virtual ClassRoom? ClassRoom { get; set; }
     public virtual Department? Department { get; set; } = default!;

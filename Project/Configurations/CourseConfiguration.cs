@@ -7,10 +7,11 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
     public void Configure(EntityTypeBuilder<Course> builder)
     {
         builder
-            .HasOne(c => c.ClassRoom)
-            .WithOne(c => c.Course)
-            .HasForeignKey<Course>(c => c.ClassRoomId)
-            .IsRequired(false);
+             .HasOne(c => c.ClassRoom) 
+             .WithOne(c => c.Course)
+             .HasForeignKey<Course>(c => c.ClassRoomId) 
+             .OnDelete(DeleteBehavior.SetNull) 
+             .IsRequired(false);
 
 
         builder

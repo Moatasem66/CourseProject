@@ -12,12 +12,14 @@ public class EnrollmentConfiguration : IEntityTypeConfiguration<Enrollment>
         builder
             .HasOne(s => s.Student)
             .WithMany(e => e.Enrollments)
-            .HasForeignKey(sc => sc.StudentId);
+            .HasForeignKey(sc => sc.StudentId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder
             .HasOne(c => c.Course)
             .WithMany(e => e.Enrollments)
-            .HasForeignKey(e => e.CourseId);
+            .HasForeignKey(e => e.CourseId)
+            .OnDelete(DeleteBehavior.Cascade);
             
     }
 }
