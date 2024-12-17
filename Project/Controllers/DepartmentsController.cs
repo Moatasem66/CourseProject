@@ -47,7 +47,7 @@ public class DepartmentsController : ControllerBase
         return ResponseDepartment == false ? BadRequest() : NoContent();
     }
     [HttpDelete]
-    [Route("deletedepartment")]
+    [Route("deletedepartment/{id}")]
     public IActionResult DeleteDepartment(int Id)
     {
         var ResponseDepartment = _departmentService.DeleteDepartment(Id);

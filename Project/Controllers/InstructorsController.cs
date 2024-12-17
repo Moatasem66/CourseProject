@@ -48,7 +48,7 @@ public class InstructorsController : ControllerBase
         return ResponseInstructor  ? NoContent() : BadRequest();
     }
     [HttpDelete]
-    [Route("deleteinstructor")]
+    [Route("deleteinstructor/{id}")]
     public IActionResult DeleteInstructor(int Id)
     {
         var ResponseInstructor = _InstructorService.DeleteInstructor(Id);
