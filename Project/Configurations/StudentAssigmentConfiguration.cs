@@ -4,26 +4,22 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Project.Entities;
 namespace CourseProject.Configurations;
 
-public class StudentAssigmentConfiguration : IEntityTypeConfiguration<StudentAssigment>
+public class StudentAssigmentConfiguration : IEntityTypeConfiguration<StudentAssignment>
 {
-    public void Configure(EntityTypeBuilder<StudentAssigment> builder)
+    public void Configure(EntityTypeBuilder<StudentAssignment> builder)
     {
-        builder.HasKey(
-             x => new
-             {
-                 x.StudentId,
-                 x.AssignmentId
-             });
+        builder.HasKey(x => x.Id);
+            
 
         builder
             .HasOne(s => s.Student)
-            .WithMany(x => x.StudentAssigments)
+            .WithMany(x => x.StudentAssignments)
             .HasForeignKey(c => c.StudentId)
             .OnDelete(DeleteBehavior.Cascade) ;
 
         builder
             .HasOne(s => s.Assignment)
-            .WithMany(x => x.StudentAssignments)
+            .WithMany(x => x.StudentAssignment)
             .HasForeignKey(c => c.AssignmentId)
             .OnDelete(DeleteBehavior.Cascade);
            

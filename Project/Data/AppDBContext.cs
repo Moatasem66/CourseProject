@@ -20,7 +20,7 @@ public class AppDBContext : DbContext
     public DbSet<Student> Students { get; set; }
     public DbSet<Enrollment> Enrollments { get; set; }
     public DbSet<Assignment> Assignments { get; set; }
-    public DbSet<StudentAssigment> StudentAssigments { get; set; }  
+    public DbSet<StudentAssignment> StudentAssignments { get; set; }  
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

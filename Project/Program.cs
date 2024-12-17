@@ -34,6 +34,7 @@ namespace Project
             builder.Services.AddScoped<IStudentService, StudentService>();
             builder.Services.AddScoped<IEnrollmentService, EnrollmentService>();
             builder.Services.AddScoped<IAssignmentService, AssignmentService>();
+            builder.Services.AddScoped<IStudentAssignmentService, StudentAssignmentService>();
 
 
             var app = builder.Build();

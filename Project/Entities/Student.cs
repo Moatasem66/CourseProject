@@ -11,6 +11,6 @@ public class Student
     public string PhoneNumber { get; set; }
     public string Address { get; set; }
     public virtual ICollection<Enrollment> Enrollments { get; set; } = default!;
-    public virtual ICollection<StudentAssigment> StudentAssigments { get; set; } = default!;
+    public virtual ICollection<StudentAssignment> StudentAssignments { get; set; } = default!;
 
 }

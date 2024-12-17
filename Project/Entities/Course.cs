@@ -1,7 +1,5 @@
 ﻿using CourseProject.Entities;
-
 namespace Project.Entities;
-
 public class Course
 {
     public int Id { get; set; }

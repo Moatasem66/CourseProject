@@ -14,7 +14,7 @@ public class Assignment
     public DateTime DueDate { get; set; }
     public int CourseId { get; set; }
     public virtual Course Course { get; set; } = new();
-    public virtual ICollection<StudentAssigment> StudentAssignments { get; set; } = [];
+    public virtual ICollection<StudentAssignment> StudentAssignment { get; set; } = [];
 
 }
 /// <summary> Assignment Have Many Students </summary>
