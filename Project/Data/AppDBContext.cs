@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CourseProject.Configurations;
+using CourseProject.Entities;
+using Microsoft.EntityFrameworkCore;
 using Project.Entities;
 using System.Reflection;
 
@@ -11,14 +13,20 @@ public class AppDBContext : DbContext
     {
 
     }
-    //public DbSet<Student> Students { get; set; }
     public DbSet<Course> Courses { get; set; }
     public DbSet<ClassRoom> ClassRooms { get; set; }
     public DbSet<Instructor> Instructors { get; set; }
     public DbSet<Department> Departments { get; set; }
+    public DbSet<Student> Students { get; set; }
+    public DbSet<Enrollment> Enrollments { get; set; }
+    public DbSet<Assignment> Assignments { get; set; }
+    public DbSet<StudentAssigment> StudentAssigments { get; set; }  
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
     }
 }

@@ -46,8 +46,7 @@ public class DepartmentService : IDepartmentService
     public Department GetDepartmentById(int Id)
     {
         var Department = _context.Departments.Find(Id);
-        
-        
+
         return Department;
     }
     /// <inheritdoc/>

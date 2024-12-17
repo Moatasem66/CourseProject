@@ -14,7 +14,7 @@ public class ClassRoomController : ControllerBase
         _classRoomService = ClassRoomService;
     }
     [HttpGet]
-    [Route("GetClassRoomById")]
+    [Route("getbyid")]
     public IActionResult GetClassRoomById(int Id)
     {
         var ResponseClassRoom = _classRoomService.GetClassRoomById(Id);
@@ -22,7 +22,7 @@ public class ClassRoomController : ControllerBase
         return ResponseClassRoom is null ? NotFound() : Ok(ResponseClassRoom);
     }
     [HttpGet]
-    [Route("GetAllClassRooms")]
+    [Route("getall")]
     public IActionResult GetAllClassRooms()
     {
         var ClassRoomsList = _classRoomService.GetAllClassRooms();
@@ -31,7 +31,7 @@ public class ClassRoomController : ControllerBase
     }
 
     [HttpPost]
-    [Route("ClassRoom_Create")]
+    [Route("createclassroom")]
     public IActionResult CreateClassRoom(ClassRoom ClassRoom)
     {
         var ResponseClassRoom = _classRoomService.CreateClassRoom(ClassRoom);
@@ -39,7 +39,7 @@ public class ClassRoomController : ControllerBase
         return ResponseClassRoom is null ? BadRequest("Error Happen ") : Ok(ClassRoom);
     }
     [HttpPut]
-    [Route("ClassRoom_Update/{Id}")]
+    [Route("updateclassroom/{Id}")]
     public IActionResult UpdateClassRoom(int Id, ClassRoom ClassRoom)
     {
         var ResponseClassRoom = _classRoomService.UpdateClassRoom(Id, ClassRoom);
@@ -47,7 +47,7 @@ public class ClassRoomController : ControllerBase
         return ResponseClassRoom == false ? BadRequest() : NoContent();
     }
     [HttpDelete]
-    [Route("ClassRoom_Delete")]
+    [Route("deleteclassroom/{id}")]
     public IActionResult DeleteClassRoom(int Id)
     {
         var ResponseClassRoom = _classRoomService.DeleteClassRoom(Id);

@@ -15,7 +15,7 @@ public class InstructorsController : ControllerBase
         _InstructorService = InstructorService;
     }
     [HttpGet]
-    [Route("GetInstructorById")]
+    [Route("getbyid")]
     public IActionResult GetInstructorById(int Id)
     {
         var ResponseInstructor = _InstructorService.GetInstructorById(Id);
@@ -23,7 +23,7 @@ public class InstructorsController : ControllerBase
         return ResponseInstructor is null ? NotFound() : Ok(ResponseInstructor);
     }
     [HttpGet]
-    [Route("GetAllInstructors")]
+    [Route("getall")]
     public IActionResult GetAllInstructors()
     {
         var InstructorsList = _InstructorService.GetAllInstructors();
@@ -32,27 +32,27 @@ public class InstructorsController : ControllerBase
     }
 
     [HttpPost]
-    [Route("Instructor_Create")]
+    [Route("createinstructor")]
     public IActionResult CreateInstructor(Instructor Instructor)
     {
         var ResponseInstructor = _InstructorService.CreateInstructor(Instructor);
 
-        return ResponseInstructor is null ? BadRequest("Error Happen ") : Ok(Instructor);
+        return ResponseInstructor is null ? BadRequest("Error Happen ") : Ok(ResponseInstructor);
     }
     [HttpPut]
-    [Route("Instructor_Update/{Id}")]
+    [Route("updateinstructor/{Id}")]
     public IActionResult UpdateInstructor(int Id, Instructor Instructor)
     {
         var ResponseInstructor = _InstructorService.UpdateInstructor(Id, Instructor);
 
-        return ResponseInstructor == false ? BadRequest() : NoContent();
+        return ResponseInstructor  ? NoContent() : BadRequest();
     }
     [HttpDelete]
-    [Route("Instructor_Delete")]
+    [Route("deleteinstructor")]
     public IActionResult DeleteInstructor(int Id)
     {
         var ResponseInstructor = _InstructorService.DeleteInstructor(Id);
 
-        return ResponseInstructor == false ? BadRequest() : NoContent();
+        return ResponseInstructor ? NoContent() : BadRequest();
     }
 }

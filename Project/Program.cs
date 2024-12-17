@@ -25,10 +25,16 @@ namespace Project
             builder.Services.AddDbContext<AppDBContext>(
                 o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") )
                 );
+
+            // Register Contracts and his Concrete classes
             builder.Services.AddScoped<ICourseService, CourseService>();
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
             builder.Services.AddScoped<IClassRoomService, ClassRoomService>();
             builder.Services.AddScoped<IInstructorService, InstructorService>();
+            builder.Services.AddScoped<IStudentService, StudentService>();
+            builder.Services.AddScoped<IEnrollmentService, EnrollmentService>();
+            builder.Services.AddScoped<IAssignmentService, AssignmentService>();
+
 
             var app = builder.Build();
 

@@ -46,6 +46,7 @@ public class InstructorService : IInstructorService
     public Instructor GetInstructorById(int Id)
     {
         var Instructor = _context.Instructors.Find(Id);
+       
         return Instructor;
     }
     /// <inheritdoc/>

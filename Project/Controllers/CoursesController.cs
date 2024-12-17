@@ -13,7 +13,7 @@ public class CoursesController : ControllerBase
         _courseService = CourseService;
     }
     [HttpGet]
-    [Route("GetCourseById")]
+    [Route("getbyid")]
     public IActionResult GetCourseById(int CourseId)
     {
         var ResponseCourse = _courseService.GetCourseById(CourseId);
@@ -21,7 +21,7 @@ public class CoursesController : ControllerBase
         return ResponseCourse is null ? NotFound() : Ok(ResponseCourse);
     }
     [HttpGet]
-    [Route("GetAllCourses")]
+    [Route("getall")]
     public IActionResult GetAllCourses()
     {
         var CoursesList = _courseService.GetAllCourses();
@@ -30,7 +30,7 @@ public class CoursesController : ControllerBase
     }
 
     [HttpPost]
-    [Route("Course_Create")]
+    [Route("createcourse")]
     public IActionResult CreateCourse(Course Course)
     {
         var ResponseCourse = _courseService.CreateCourse(Course);
@@ -38,7 +38,7 @@ public class CoursesController : ControllerBase
         return ResponseCourse is null ? BadRequest("Error Happen ") : Ok(Course);
     }
     [HttpPut]
-    [Route("Course_Update/{Id}")]
+    [Route("updatecourse/{Id}")]
     public IActionResult UpdateCourse(int Id, Course Course)
     {
         var ResponseCourse = _courseService.UpdateCourse(Id, Course);
@@ -46,7 +46,7 @@ public class CoursesController : ControllerBase
         return ResponseCourse == false ? BadRequest() : NoContent();
     }
     [HttpDelete]
-    [Route("Course_Delete")]
+    [Route("deletecourse/{Id}")]
     public IActionResult DeleteCourse(int Id)
     {
         var ResponseCourse = _courseService.DeleteCourse(Id);

@@ -14,7 +14,7 @@ public class DepartmentsController : ControllerBase
         _departmentService = DepartmentService;
     }
     [HttpGet]
-    [Route("GetDepartmentById")]
+    [Route("getbyid")]
     public IActionResult GetDepartmentById(int Id)
     {
         var ResponseDepartment = _departmentService.GetDepartmentById(Id);
@@ -22,7 +22,7 @@ public class DepartmentsController : ControllerBase
         return ResponseDepartment is null ? NotFound() : Ok(ResponseDepartment);
     }
     [HttpGet]
-    [Route("GetAllDepartments")]
+    [Route("getall")]
     public IActionResult GetAllDepartments()
     {
         var DepartmentsList = _departmentService.GetAllDepartments();
@@ -31,7 +31,7 @@ public class DepartmentsController : ControllerBase
     }
 
     [HttpPost]
-    [Route("Department_Create")]
+    [Route("createdepartment")]
     public IActionResult CreateDepartment(Department Department)
     {
         var ResponseDepartment = _departmentService.CreateDepartment(Department);
@@ -39,7 +39,7 @@ public class DepartmentsController : ControllerBase
         return ResponseDepartment is null ? BadRequest("Error Happen ") : Ok(Department);
     }
     [HttpPut]
-    [Route("Department_Update/{Id}")]
+    [Route("updatedepartment/{Id}")]
     public IActionResult UpdateDepartment(int Id, Department Department)
     {
         var ResponseDepartment = _departmentService.UpdateDepartment(Id, Department);
@@ -47,7 +47,7 @@ public class DepartmentsController : ControllerBase
         return ResponseDepartment == false ? BadRequest() : NoContent();
     }
     [HttpDelete]
-    [Route("Department_Delete")]
+    [Route("deletedepartment")]
     public IActionResult DeleteDepartment(int Id)
     {
         var ResponseDepartment = _departmentService.DeleteDepartment(Id);

@@ -1,4 +1,6 @@
-﻿namespace Project.Entities;
+﻿using CourseProject.Entities;
+
+namespace Project.Entities;
 
 public class Course
 {
@@ -9,9 +11,11 @@ public class Course
     public int DepartmentId { get; set; }
     public int ClassRoomId { get; set; }
     public int InstructorId { get; set; }
-    public ClassRoom? ClassRoom { get; set; }
-    public Department? Department { get; set; } = default!;
-    public Instructor? Instructor { get; set; } = default!;
+    public virtual ClassRoom? ClassRoom { get; set; }
+    public virtual Department? Department { get; set; } = default!;
+    public virtual Instructor? Instructor { get; set; } = default!;
+    public virtual ICollection<Enrollment>? Enrollments { get; set; } = default!;
+    public virtual ICollection<Assignment>? Assignments { get; set; } = default!;
 
 
 }

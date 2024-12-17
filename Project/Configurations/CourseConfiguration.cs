@@ -9,7 +9,8 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
         builder
             .HasOne(c => c.ClassRoom)
             .WithOne(c => c.Course)
-            .HasForeignKey<Course>(c => c.ClassRoomId);
+            .HasForeignKey<Course>(c => c.ClassRoomId)
+            .IsRequired(false);
 
 
         builder
@@ -22,5 +23,7 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
           .WithMany(x => x.Courses)
           .HasForeignKey(x => x.InstructorId)
           .OnDelete(DeleteBehavior.Restrict);
+
+       
     }
 }
