@@ -17,9 +17,11 @@ public class StudentAssignmentService  : IStudentAssignmentService
     {
         try
         {
+            
             _context.StudentAssignments.Add(StudentAssignment);
             _context.SaveChanges();
             return StudentAssignment;
+            
         }
         catch (Exception ex)
         {
@@ -54,21 +56,22 @@ public class StudentAssignmentService  : IStudentAssignmentService
     {
         try
         {
-            var CurrentStudentAssignment = _context.StudentAssignments.Find(Id);
+            var CurrentStudentAssignment = GetStudentAssignmentById(Id);
             if (CurrentStudentAssignment is null)
                 return false;
-
-            //CurrentStudentAssignment.Name = StudentAssignment.Name;
-            //CurrentStudentAssignment.Capacity = StudentAssignment.Capacity;
-            //CurrentStudentAssignment.Location = StudentAssignment.Location;
-
-
+            
+            CurrentStudentAssignment.StudentId = StudentAssignment.StudentId;
+            CurrentStudentAssignment.AssignmentId = StudentAssignment.AssignmentId;
+            CurrentStudentAssignment.SubmissionDate = StudentAssignment.SubmissionDate;
             _context.SaveChanges();
             return true;
+
+            
         }
         catch (Exception ex)
         {
             throw new Exception(ex.Message);
         }
     }
+   
 }

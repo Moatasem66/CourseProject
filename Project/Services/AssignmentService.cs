@@ -8,17 +8,17 @@ namespace CourseProject.Services;
 public class AssignmentService : IAssignmentService
 {
     private readonly AppDBContext _context;
-    public AssignmentService(AppDBContext dbContext)
+    public AssignmentService(AppDBContext DbContext)
     {
-        _context = dbContext;
+        _context = DbContext;
     }
     /// <inheritdoc/>
     public Assignment CreateAssignment(Assignment Assignment)
     {
         try
         {
-            _context.Assignments.Add(Assignment);
-            _context.SaveChanges();
+             _context.Assignments.Add(Assignment);
+             _context.SaveChanges();
             return Assignment;
         }
         catch (Exception ex)

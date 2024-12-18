@@ -15,5 +15,6 @@ public class AssignmentConfiguration : IEntityTypeConfiguration<Assignment>
             .WithMany(a => a.Assignments)
             .HasForeignKey(x=> x.CourseId)
             .OnDelete(DeleteBehavior.Cascade);
+        builder.ToTable("Assignments");
     }
 }

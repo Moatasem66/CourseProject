@@ -15,7 +15,7 @@ public class InstructorsController : ControllerBase
         _InstructorService = InstructorService;
     }
     [HttpGet]
-    [Route("getbyid")]
+    [Route("getinstructorbyid")]
     public IActionResult GetInstructorById(int Id)
     {
         var ResponseInstructor = _InstructorService.GetInstructorById(Id);
@@ -23,7 +23,7 @@ public class InstructorsController : ControllerBase
         return ResponseInstructor is null ? NotFound() : Ok(ResponseInstructor);
     }
     [HttpGet]
-    [Route("getall")]
+    [Route("getallinstructors")]
     public IActionResult GetAllInstructors()
     {
         var InstructorsList = _InstructorService.GetAllInstructors();
@@ -48,7 +48,7 @@ public class InstructorsController : ControllerBase
         return ResponseInstructor  ? NoContent() : BadRequest();
     }
     [HttpDelete]
-    [Route("deleteinstructor/{id}")]
+    [Route("deleteinstructor/{Id}")]
     public IActionResult DeleteInstructor(int Id)
     {
         var ResponseInstructor = _InstructorService.DeleteInstructor(Id);

@@ -6,15 +6,15 @@ using Project.Entities;
 namespace ClassRoomProject.Controllers;
 [Route("api/[controller]")]
 [ApiController]
-public class ClassRoomController : ControllerBase
+public class ClassRoomsController : ControllerBase
 {
     private readonly IClassRoomService _classRoomService;
-    public ClassRoomController(IClassRoomService ClassRoomService)
+    public ClassRoomsController(IClassRoomService ClassRoomService)
     {
         _classRoomService = ClassRoomService;
     }
     [HttpGet]
-    [Route("getbyid")]
+    [Route("getclassroombyid")]
     public IActionResult GetClassRoomById(int Id)
     {
         var ResponseClassRoom = _classRoomService.GetClassRoomById(Id);
@@ -22,7 +22,7 @@ public class ClassRoomController : ControllerBase
         return ResponseClassRoom is null ? NotFound() : Ok(ResponseClassRoom);
     }
     [HttpGet]
-    [Route("getall")]
+    [Route("getallclassrooms")]
     public IActionResult GetAllClassRooms()
     {
         var ClassRoomsList = _classRoomService.GetAllClassRooms();
@@ -47,7 +47,7 @@ public class ClassRoomController : ControllerBase
         return ResponseClassRoom == false ? BadRequest() : NoContent();
     }
     [HttpDelete]
-    [Route("deleteclassroom/{id}")]
+    [Route("deleteclassroom/{Id}")]
     public IActionResult DeleteClassRoom(int Id)
     {
         var ResponseClassRoom = _classRoomService.DeleteClassRoom(Id);

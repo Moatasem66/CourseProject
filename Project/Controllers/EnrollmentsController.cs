@@ -15,7 +15,7 @@ public class EnrollmentsController : ControllerBase
         _enrollmentService = EnrollmentService;
     }
     [HttpGet]
-    [Route("getbyid")]
+    [Route("getenrollmentbyid")]
     public IActionResult GetEnrollmentById(int Id)
     {
         var ResponseEnrollment = _enrollmentService.GetEnrollmentById(Id);
@@ -23,7 +23,7 @@ public class EnrollmentsController : ControllerBase
         return ResponseEnrollment is null ? NotFound() : Ok(ResponseEnrollment);
     }
     [HttpGet]
-    [Route("getall")]
+    [Route("getallenrollments")]
     public IActionResult GetAllEnrollments()
     {
         var EnrollmentsList = _enrollmentService.GetAllEnrollments();
@@ -32,7 +32,7 @@ public class EnrollmentsController : ControllerBase
     }
 
     [HttpPost]
-    [Route("createEnrollment")]
+    [Route("createenrollment")]
     public IActionResult CreateEnrollment(Enrollment Enrollment)
     {
         var ResponseEnrollment = _enrollmentService.CreateEnrollment(Enrollment);
@@ -40,7 +40,7 @@ public class EnrollmentsController : ControllerBase
         return ResponseEnrollment is null ? BadRequest("Error Happen ") : Ok(Enrollment);
     }
     [HttpPut]
-    [Route("updateEnrollment/{Id}")]
+    [Route("updateenrollment/{Id}")]
     public IActionResult UpdateEnrollment(int Id, Enrollment Enrollment)
     {
         var ResponseEnrollment = _enrollmentService.UpdateEnrollment(Id, Enrollment);
@@ -48,7 +48,7 @@ public class EnrollmentsController : ControllerBase
         return ResponseEnrollment == false ? BadRequest() : NoContent();
     }
     [HttpDelete]
-    [Route("deleteEnrollment/{id}")]
+    [Route("deleteenrollment/{Id}")]
     public IActionResult DeleteEnrollment(int Id)
     {
         var ResponseEnrollment = _enrollmentService.DeleteEnrollment(Id);

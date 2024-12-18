@@ -22,6 +22,7 @@ namespace Project
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+
             builder.Services.AddDbContext<AppDBContext>(
                 o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") )
                 );
@@ -43,7 +44,11 @@ namespace Project
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Course Project");
+                    options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None); // Collapse by default
+                });
             }
 
             app.UseHttpsRedirection();

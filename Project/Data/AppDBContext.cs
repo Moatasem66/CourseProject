@@ -1,5 +1,4 @@
-﻿using CourseProject.Configurations;
-using CourseProject.Entities;
+﻿using CourseProject.Entities;
 using Microsoft.EntityFrameworkCore;
 using Project.Entities;
 using System.Reflection;
@@ -11,7 +10,7 @@ public class AppDBContext : DbContext
     public AppDBContext(DbContextOptions<AppDBContext> options)
         : base(options)
     {
-
+        
     }
     public DbSet<Course> Courses { get; set; }
     public DbSet<ClassRoom> ClassRooms { get; set; }

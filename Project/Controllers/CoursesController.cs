@@ -13,7 +13,7 @@ public class CoursesController : ControllerBase
         _courseService = CourseService;
     }
     [HttpGet]
-    [Route("getbyid")]
+    [Route("getcoursebyid")]
     public IActionResult GetCourseById(int CourseId)
     {
         var ResponseCourse = _courseService.GetCourseById(CourseId);
@@ -21,7 +21,7 @@ public class CoursesController : ControllerBase
         return ResponseCourse is null ? NotFound() : Ok(ResponseCourse);
     }
     [HttpGet]
-    [Route("getall")]
+    [Route("getallcourses")]
     public IActionResult GetAllCourses()
     {
         var CoursesList = _courseService.GetAllCourses();

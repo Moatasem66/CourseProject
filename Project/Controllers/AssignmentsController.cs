@@ -9,49 +9,49 @@ namespace CourseProject.Controllers;
 [ApiController]
 public class AssignmentsController : ControllerBase
 {
-    private readonly IAssignmentService _AssignmentService;
+    private readonly IAssignmentService _assignmentService;
     public AssignmentsController(IAssignmentService AssignmentService)
     {
-        _AssignmentService = AssignmentService;
+        _assignmentService = AssignmentService;
     }
     [HttpGet]
-    [Route("getbyid")]
+    [Route("getassignmentbyid")]
     public IActionResult GetAssignmentById(int Id)
     {
-        var ResponseAssignment = _AssignmentService.GetAssignmentById(Id);
+        var ResponseAssignment = _assignmentService.GetAssignmentById(Id);
 
         return ResponseAssignment is null ? NotFound() : Ok(ResponseAssignment);
     }
     [HttpGet]
-    [Route("getall")]
+    [Route("getallassignments")]
     public IActionResult GetAllAssignments()
     {
-        var AssignmentsList = _AssignmentService.GetAllAssignments();
+        var AssignmentsList = _assignmentService.GetAllAssignments();
 
         return AssignmentsList == null ? BadRequest() : Ok(AssignmentsList);
     }
 
     [HttpPost]
-    [Route("createAssignment")]
+    [Route("createassignment")]
     public IActionResult CreateAssignment(Assignment Assignment)
     {
-        var ResponseAssignment = _AssignmentService.CreateAssignment(Assignment);
+        var ResponseAssignment = _assignmentService.CreateAssignment(Assignment);
 
-        return ResponseAssignment is null ? BadRequest("Error Happen ") : Ok(Assignment);
+        return ResponseAssignment is null ? BadRequest("Error Happen ") : Ok(ResponseAssignment);
     }
     [HttpPut]
-    [Route("updateAssignment/{Id}")]
+    [Route("updateassignment/{Id}")]
     public IActionResult UpdateAssignment(int Id, Assignment Assignment)
     {
-        var ResponseAssignment = _AssignmentService.UpdateAssignment(Id, Assignment);
+        var ResponseAssignment = _assignmentService.UpdateAssignment(Id, Assignment);
 
         return ResponseAssignment == false ? BadRequest() : NoContent();
     }
     [HttpDelete]
-    [Route("deleteAssignment/{id}")]
+    [Route("deleteassignment/{Id}")]
     public IActionResult DeleteAssignment(int Id)
     {
-        var ResponseAssignment = _AssignmentService.DeleteAssignment(Id);
+        var ResponseAssignment = _assignmentService.DeleteAssignment(Id);
 
         return ResponseAssignment == false ? BadRequest() : NoContent();
     }

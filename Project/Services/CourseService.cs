@@ -64,6 +64,7 @@ public class CourseService : ICourseService
             CurrentCourse.CourseHour = Course.CourseHour;
             CurrentCourse.ClassRoomId = Course.ClassRoomId;
             CurrentCourse.InstructorId = Course.InstructorId;
+            CurrentCourse.DepartmentId =  Course.DepartmentId;
 
             
             _context.SaveChanges();

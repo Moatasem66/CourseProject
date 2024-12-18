@@ -9,6 +9,16 @@ public class EnrollmentConfiguration : IEntityTypeConfiguration<Enrollment>
 {
     public void Configure(EntityTypeBuilder<Enrollment> builder)
     {
+        
+
+        builder
+            .HasIndex(k => new
+            {
+                k.StudentId, 
+                k.CourseId
+            })
+            .IsUnique();
+        
         builder
             .HasOne(s => s.Student)
             .WithMany(e => e.Enrollments)

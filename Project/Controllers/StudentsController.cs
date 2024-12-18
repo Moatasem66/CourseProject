@@ -14,7 +14,7 @@ public class StudentsController : ControllerBase
         _studentService= StudentService;
     }
     [HttpGet]
-    [Route("getbyid")]
+    [Route("getstudentbyid")]
     public IActionResult GetStudentById(int Id)
     {
         var ResponseStudent = _studentService.GetStudentById(Id);
@@ -22,7 +22,7 @@ public class StudentsController : ControllerBase
         return ResponseStudent is null ? NotFound() : Ok(ResponseStudent);
     }
     [HttpGet]
-    [Route("getall")]
+    [Route("getallstudents")]
     public IActionResult GetAllStudents()
     {
         var StudentsList = _studentService.GetAllStudents();
@@ -31,7 +31,7 @@ public class StudentsController : ControllerBase
     }
 
     [HttpPost]
-    [Route("createStudent")]
+    [Route("createstudent")]
     public IActionResult CreateStudent(Student Student)
     {
         var ResponseStudent = _studentService.CreateStudent(Student);
@@ -39,7 +39,7 @@ public class StudentsController : ControllerBase
         return ResponseStudent is null ? BadRequest("Error Happen ") : Ok(Student);
     }
     [HttpPut]
-    [Route("updateStudent/{Id}")]
+    [Route("updatestudent/{Id}")]
     public IActionResult UpdateStudent(int Id, Student Student)
     {
         var ResponseStudent = _studentService.UpdateStudent(Id, Student);
@@ -47,7 +47,7 @@ public class StudentsController : ControllerBase
         return ResponseStudent == false ? BadRequest() : NoContent();
     }
     [HttpDelete]
-    [Route("deleteStudent/{id}")]
+    [Route("deletestudent/{Id}")]
     public IActionResult DeleteStudent(int Id)
     {
         var ResponseStudent = _studentService.DeleteStudent(Id);

@@ -15,8 +15,6 @@ public class EnrollmentService : IEnrollmentService
     /// <inheritdoc/>
     public Enrollment? GetEnrollmentById(int Id)
     {
-        if (Id == 0)
-            return null;
         var Enrollment = _context.Enrollments.Find(Id);
         return Enrollment is null ? null : Enrollment;
     }

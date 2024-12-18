@@ -14,7 +14,7 @@ public class DepartmentsController : ControllerBase
         _departmentService = DepartmentService;
     }
     [HttpGet]
-    [Route("getbyid")]
+    [Route("getdepartmentbyid")]
     public IActionResult GetDepartmentById(int Id)
     {
         var ResponseDepartment = _departmentService.GetDepartmentById(Id);
@@ -22,7 +22,7 @@ public class DepartmentsController : ControllerBase
         return ResponseDepartment is null ? NotFound() : Ok(ResponseDepartment);
     }
     [HttpGet]
-    [Route("getall")]
+    [Route("getalldepartments")]
     public IActionResult GetAllDepartments()
     {
         var DepartmentsList = _departmentService.GetAllDepartments();
@@ -47,7 +47,7 @@ public class DepartmentsController : ControllerBase
         return ResponseDepartment == false ? BadRequest() : NoContent();
     }
     [HttpDelete]
-    [Route("deletedepartment/{id}")]
+    [Route("deletedepartment/{Id}")]
     public IActionResult DeleteDepartment(int Id)
     {
         var ResponseDepartment = _departmentService.DeleteDepartment(Id);

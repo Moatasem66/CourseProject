@@ -4,21 +4,14 @@ using System;
 namespace Project.Entities;
 public class Assignment
 {
-    public Assignment()
-    {
-        
-    }
+   
     public int Id { get; set; }
-    public string Title { get; set; } =string.Empty;
-    public string Description { get; set; } = string.Empty;
+    public string Title { get; set; } 
+    public string Description { get; set; } 
     public DateTime DueDate { get; set; }
     public int CourseId { get; set; }
-    public virtual Course Course { get; set; } = new();
-    public virtual ICollection<StudentAssignment> StudentAssignment { get; set; } = [];
+    public virtual Course? Course { get; set; } 
+    public virtual ICollection<StudentAssignment>? StudentAssignment { get; set; } 
 
 }
-/// <summary> Assignment Have Many Students </summary>
-/// <summary> Students have Many Assigmnets </summary>
-/// <summary> Assignment Have One Course </summary>
-/// <summary> Course Have Many Assgnment </summary>
 

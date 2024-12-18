@@ -8,8 +8,16 @@ public class StudentAssigmentConfiguration : IEntityTypeConfiguration<StudentAss
 {
     public void Configure(EntityTypeBuilder<StudentAssignment> builder)
     {
-        builder.HasKey(x => x.Id);
-            
+        builder
+            .HasKey(x => x.Id);
+
+        builder
+            .HasIndex(x => new
+            {
+                x.AssignmentId,
+                x.StudentId
+            })
+            .IsUnique();
 
         builder
             .HasOne(s => s.Student)

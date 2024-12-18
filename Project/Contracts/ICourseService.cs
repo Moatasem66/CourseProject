@@ -7,13 +7,14 @@ public interface ICourseService
     /// <summary>
     /// method to Create new Course 
     /// </summary>
-    /// <param name="Course"></param>
+    /// <param name="Course">Course</param>
     /// <returns>Course</returns>
     Course CreateCourse(Course Course);
     /// <summary>
     /// method to Update Course 
     /// </summary>
-    /// <param name="Course"></param>
+    /// <param name="Id"> Course id </param>
+    /// <param name="Course"> Course Object </param>
     /// <returns>bool</returns>
     bool UpdateCourse(int Id, Course Course);
     /// <summary>

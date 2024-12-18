@@ -7,8 +7,8 @@ public interface IEnrollmentService
     /// <summary>
     /// method to Get Enrollment  by id 
     /// </summary>
-    /// <param name="EnrollmentId"></param>
-    Enrollment GetEnrollmentById(int EnrollmentId);
+    /// <param name="Id"></param>
+    Enrollment GetEnrollmentById(int Id);
     /// <summary>
     /// method to Get List Enrollment  
     /// </summary>
@@ -23,13 +23,14 @@ public interface IEnrollmentService
     /// <summary>
     /// method to Update Enrollment 
     /// </summary>
+    /// <param name="Id"></param>
     /// <param name="Enrollment"></param>
     /// <returns>bool</returns>
     bool UpdateEnrollment(int Id, Enrollment Enrollment);
     /// <summary>
     /// method to Delete Enrollment  
     /// </summary>
-    /// <param name="EnrollmentID"></param>
+    /// <param name="Id"></param>
     /// <returns>bool</returns>
-    bool DeleteEnrollment(int EnrollmentId);
+    bool DeleteEnrollment(int Id);
 }
