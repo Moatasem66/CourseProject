@@ -1,4 +1,5 @@
-﻿using Project.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using Project.Contracts;
 using Project.Data;
 using Project.Entities;
 
@@ -40,12 +41,13 @@ public class ClassRoomService : IClassRoomService
     /// <inheritdoc/>
     public List<ClassRoom> GetAllClassRooms()
     {
-        return _context.ClassRooms.ToList();
+        return _context.ClassRooms.Include(C => C.Course).ToList();
     }
 
     public ClassRoom GetClassRoomById(int Id)
     {
-        var ClassRoom = _context.ClassRooms.Find(Id);
+        //var ClassRoom = _context.ClassRooms.Find(Id);
+        var ClassRoom = _context.ClassRooms.Include(C => C.Course).FirstOrDefault(x => x.Id == Id);
         return ClassRoom;
     }
     /// <inheritdoc/>

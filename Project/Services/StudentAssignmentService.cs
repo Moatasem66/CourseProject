@@ -17,11 +17,13 @@ public class StudentAssignmentService  : IStudentAssignmentService
     {
         try
         {
-            
-            _context.StudentAssignments.Add(StudentAssignment);
-            _context.SaveChanges();
-            return StudentAssignment;
-            
+            if (CheckStudentEnrollToAssignmentCourse(StudentAssignment.StudentId, StudentAssignment.AssignmentId))
+            {
+                _context.StudentAssignments.Add(StudentAssignment);
+                _context.SaveChanges();
+                return StudentAssignment;
+            }
+            return new StudentAssignment();
         }
         catch (Exception ex)
         {
@@ -60,18 +62,37 @@ public class StudentAssignmentService  : IStudentAssignmentService
             if (CurrentStudentAssignment is null)
                 return false;
             
-            CurrentStudentAssignment.StudentId = StudentAssignment.StudentId;
-            CurrentStudentAssignment.AssignmentId = StudentAssignment.AssignmentId;
-            CurrentStudentAssignment.SubmissionDate = StudentAssignment.SubmissionDate;
-            _context.SaveChanges();
-            return true;
+            if (CheckStudentEnrollToAssignmentCourse(StudentAssignment.StudentId, StudentAssignment.AssignmentId))
+            {
+                CurrentStudentAssignment.StudentId = StudentAssignment.StudentId;
+                CurrentStudentAssignment.AssignmentId = StudentAssignment.AssignmentId;
+                CurrentStudentAssignment.SubmissionDate = StudentAssignment.SubmissionDate;
+                _context.SaveChanges();
+                return true;
 
-            
+            }
+            return false;
         }
         catch (Exception ex)
         {
             throw new Exception(ex.Message);
         }
     }
-   
+    private bool CheckStudentEnrollToAssignmentCourse(int StudentId, int AssignmentId)
+    {
+        try
+        {
+            var Assignment = _context.Assignments.Find(AssignmentId);
+            if(Assignment is null)
+                return false;
+            var Enrollment = _context.Enrollments.FirstOrDefault(x => x.StudentId == StudentId && x.CourseId == Assignment.CourseId);
+            if (Enrollment is null)
+                return false;
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
 }

@@ -9,7 +9,7 @@ public interface ICourseService
     /// </summary>
     /// <param name="Course">Course</param>
     /// <returns>Course</returns>
-    Course CreateCourse(Course Course);
+    Course? CreateCourse(Course Course);
     /// <summary>
     /// method to Update Course 
     /// </summary>
@@ -28,7 +28,7 @@ public interface ICourseService
     /// </summary>
     /// <param name="CourseId"></param>
     /// <returns>Student</returns>
-    Course GetCourseById(int Id);
+    Course? GetCourseById(int Id);
     /// <summary>
     /// method to Get List Courses  
     /// </summary>
