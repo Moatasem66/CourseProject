@@ -5,6 +5,17 @@ namespace CourseProject.Contracts;
 public interface ICourseService
 {
     /// <summary>
+    /// method to Get student  by id 
+    /// </summary>
+    /// <param name="Id"></param>
+    /// <returns>Student</returns>
+    Course? GetCourseById(int Id);
+    /// <summary>
+    /// method to Get List Courses  
+    /// </summary>
+    /// <returns>list of Courses </returns>
+    List<Course> GetAllCourses();
+    /// <summary>
     /// method to Create new Course 
     /// </summary>
     /// <param name="Course">Course</param>
@@ -23,16 +34,6 @@ public interface ICourseService
     /// <param name="CourseId"></param>
     /// <returns>bool</returns>
     bool DeleteCourse(int Id);
-    /// <summary>
-    /// method to Get student  by id 
-    /// </summary>
-    /// <param name="CourseId"></param>
-    /// <returns>Student</returns>
-    Course? GetCourseById(int Id);
-    /// <summary>
-    /// method to Get List Courses  
-    /// </summary>
-    /// <returns>list of Courses </returns>
-    List<Course> GetAllCourses();
+   
 }
 

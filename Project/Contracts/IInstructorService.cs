@@ -5,8 +5,9 @@ public interface IInstructorService
     /// <summary>
     /// method to Get Instructor  by id 
     /// </summary>
-    /// <param name="InstructorId"></param>
-    Instructor GetInstructorById(int InstructorId);
+    /// <param name="Id"></param>
+    /// <returns>Instructor or null</returns>
+    Instructor? GetInstructorById(int Id);
     /// <summary>
     /// method to Get List Instructor  
     /// </summary>
@@ -21,14 +22,15 @@ public interface IInstructorService
     /// <summary>
     /// method to Update Instructor 
     /// </summary>
+    /// <param name="Id"></param>
     /// <param name="Instructor"></param>
     /// <returns>bool</returns>
     bool UpdateInstructor(int Id, Instructor Instructor);
     /// <summary>
     /// method to Delete Instructor  
     /// </summary>
-    /// <param name="InstructorID"></param>
+    /// <param name="Id"></param>
     /// <returns>bool</returns>
-    bool DeleteInstructor(int InstructorId);
+    bool DeleteInstructor(int Id);
     
 }

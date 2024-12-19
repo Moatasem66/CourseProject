@@ -7,8 +7,9 @@ public interface IAssignmentService
     /// <summary>
     /// method to Get Assignment  by id 
     /// </summary>
-    /// <param name="AssignmentId"></param>
-    Assignment GetAssignmentById(int AssignmentId);
+    /// <param name="Id"></param>
+    /// <returns>Assignment or null </returns>
+    Assignment? GetAssignmentById(int Id);
     /// <summary>
     /// method to Get List Assignment  
     /// </summary>
@@ -29,7 +30,7 @@ public interface IAssignmentService
     /// <summary>
     /// method to Delete Assignment  
     /// </summary>
-    /// <param name="AssignmentID"></param>
+    /// <param name="Id"></param>
     /// <returns>bool</returns>
-    bool DeleteAssignment(int AssignmentId);
+    bool DeleteAssignment(int Id);
 }

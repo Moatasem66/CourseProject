@@ -21,6 +21,7 @@ public class ClassRoomsController : ControllerBase
 
         return ResponseClassRoom is null ? NotFound() : Ok(ResponseClassRoom);
     }
+
     [HttpGet]
     [Route("getallclassrooms")]
     public IActionResult GetAllClassRooms()
@@ -36,8 +37,9 @@ public class ClassRoomsController : ControllerBase
     {
         var ResponseClassRoom = _classRoomService.CreateClassRoom(ClassRoom);
 
-        return ResponseClassRoom is null ? BadRequest("Error Happen ") : Ok(ClassRoom);
+        return ResponseClassRoom is null ? BadRequest() : Ok(ClassRoom);
     }
+
     [HttpPut]
     [Route("updateclassroom/{Id}")]
     public IActionResult UpdateClassRoom(int Id, ClassRoom ClassRoom)
@@ -46,6 +48,7 @@ public class ClassRoomsController : ControllerBase
 
         return ResponseClassRoom == false ? BadRequest() : NoContent();
     }
+
     [HttpDelete]
     [Route("deleteclassroom/{Id}")]
     public IActionResult DeleteClassRoom(int Id)

@@ -13,6 +13,17 @@ public class AssignmentService : IAssignmentService
         _context = DbContext;
     }
     /// <inheritdoc/>
+    public List<Assignment> GetAllAssignments()
+    {
+        return _context.Assignments.ToList();
+    }
+    /// <inheritdoc/>
+    public Assignment? GetAssignmentById(int Id)
+    {
+        var Assignment = _context.Assignments.Find(Id);
+        return Assignment ?? null;
+    }
+    /// <inheritdoc/>
     public Assignment CreateAssignment(Assignment Assignment)
     {
         try
@@ -29,7 +40,7 @@ public class AssignmentService : IAssignmentService
     /// <inheritdoc/>
     public bool DeleteAssignment(int Id)
     {
-        var Assignment = _context.Assignments.Find(Id);
+        var Assignment = GetAssignmentById(Id);
         if (Assignment is null)
             return false;
 
@@ -38,17 +49,7 @@ public class AssignmentService : IAssignmentService
         return true;
 
     }
-    /// <inheritdoc/>
-    public List<Assignment> GetAllAssignments()
-    {
-        return _context.Assignments.ToList();
-    }
-
-    public Assignment GetAssignmentById(int Id)
-    {
-        var Assignment = _context.Assignments.Find(Id);
-        return Assignment;
-    }
+    
     /// <inheritdoc/>
     public bool UpdateAssignment(int Id, Assignment Assignment)
     {

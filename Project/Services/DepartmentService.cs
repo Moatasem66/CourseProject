@@ -7,9 +7,9 @@ namespace CourseProject.Services;
 public class DepartmentService : IDepartmentService
 {
     private readonly AppDBContext _context;
-    public DepartmentService(AppDBContext dbContext)
+    public DepartmentService(AppDBContext DBContext)
     {
-        _context = dbContext;
+        _context = DBContext;
     }
     /// <inheritdoc/>
     public Department CreateDepartment(Department Department)
@@ -28,13 +28,21 @@ public class DepartmentService : IDepartmentService
     /// <inheritdoc/>
     public bool DeleteDepartment(int Id)
     {
-        var Department = _context.Departments.Find(Id);
-        if (Department is null)
-            return false;
+        try
+        {
+            var Department = GetDepartmentById(Id);
+            if (Department is null)
+                return false;
 
-        _context.Remove(Department);
-        _context.SaveChanges();
-        return true;
+            _context.Remove(Department);
+            _context.SaveChanges();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+       
 
     }
     /// <inheritdoc/>
@@ -43,18 +51,18 @@ public class DepartmentService : IDepartmentService
         return _context.Departments.ToList();
     }
 
-    public Department GetDepartmentById(int Id)
+    public Department? GetDepartmentById(int Id)
     {
         var Department = _context.Departments.Find(Id);
 
-        return Department;
+        return Department ?? null;
     }
     /// <inheritdoc/>
     public bool UpdateDepartment(int Id, Department Department)
     {
         try
         {
-            var CurrentDepartment = _context.Departments.Find(Id);
+            var CurrentDepartment = GetDepartmentById(Id);
             if (CurrentDepartment is null)
                 return false;
 

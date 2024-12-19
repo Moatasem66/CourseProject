@@ -5,12 +5,13 @@ namespace CourseProject.Contracts;
 public interface IEnrollmentService
 {
     /// <summary>
-    /// method to Get Enrollment  by id 
+    /// method to Get Enrollment by id 
     /// </summary>
     /// <param name="Id"></param>
-    Enrollment GetEnrollmentById(int Id);
+    /// <returns>Enrollment or null</returns>
+    Enrollment? GetEnrollmentById(int Id);
     /// <summary>
-    /// method to Get List Enrollment  
+    /// method to Get List of Enrollments 
     /// </summary>
     /// <returns>list of Enrollments </returns>
     List<Enrollment> GetAllEnrollments();

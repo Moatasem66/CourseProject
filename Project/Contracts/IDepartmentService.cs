@@ -7,10 +7,10 @@ public interface IDepartmentService
     /// <summary>
     /// method to Get Department  by id 
     /// </summary>
-    /// <param name="DepartmentId"></param>
-    Department GetDepartmentById(int Id);
+    /// <param name="Id"></param>
+    Department? GetDepartmentById(int Id);
     /// <summary>
-    /// method to Get List Department  
+    /// method to Get List of Department  
     /// </summary>
     /// <returns>list of Departments </returns>
     List<Department> GetAllDepartments();
@@ -23,13 +23,14 @@ public interface IDepartmentService
     /// <summary>
     /// method to Update Department 
     /// </summary>
+    /// <param name="Id"></param>
     /// <param name="Department"></param>
     /// <returns>bool</returns>
     bool UpdateDepartment(int Id, Department Department);
     /// <summary>
     /// method to Delete Department  
     /// </summary>
-    /// <param name="DepartmentID"></param>
+    /// <param name="Id"></param>
     /// <returns>bool</returns>
-    bool DeleteDepartment(int DepartmentId);
+    bool DeleteDepartment(int Id);
 }

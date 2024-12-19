@@ -7,9 +7,9 @@ namespace CourseProject.Services;
 public class InstructorService : IInstructorService
 {
     private readonly AppDBContext _context;
-    public InstructorService(AppDBContext dbContext)
+    public InstructorService(AppDBContext DBContext)
     {
-        _context = dbContext;
+        _context = DBContext;
     }
     /// <inheritdoc/>
     public Instructor CreateInstructor(Instructor Instructor)
@@ -28,13 +28,20 @@ public class InstructorService : IInstructorService
     /// <inheritdoc/>
     public bool DeleteInstructor(int Id)
     {
-        var Instructor = _context.Instructors.Find(Id);
-        if (Instructor is null)
-            return false;
+        try
+        {
+            var Instructor = GetInstructorById(Id);
+            if (Instructor is null)
+                return false;
 
-        _context.Remove(Instructor);
-        _context.SaveChanges();
-        return true;
+            _context.Remove(Instructor);
+            _context.SaveChanges();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
 
     }
     /// <inheritdoc/>
@@ -43,18 +50,18 @@ public class InstructorService : IInstructorService
         return _context.Instructors.ToList();
     }
 
-    public Instructor GetInstructorById(int Id)
+    public Instructor? GetInstructorById(int Id)
     {
         var Instructor = _context.Instructors.Find(Id);
        
-        return Instructor;
+        return Instructor ?? null;
     }
     /// <inheritdoc/>
     public bool UpdateInstructor(int Id, Instructor Instructor)
     {
         try
         {
-            var CurrentInstructor = _context.Instructors.Find(Id);
+            var CurrentInstructor = GetInstructorById(Id);
             if (CurrentInstructor is null)
                 return false;
 

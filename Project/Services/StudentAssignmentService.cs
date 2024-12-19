@@ -8,9 +8,9 @@ namespace CourseProject.Services;
 public class StudentAssignmentService  : IStudentAssignmentService
 {
     private readonly AppDBContext _context;
-    public StudentAssignmentService(AppDBContext dbContext)
+    public StudentAssignmentService(AppDBContext DBContext)
     {
-        _context = dbContext;
+        _context = DBContext;
     }
     /// <inheritdoc/>
     public StudentAssignment CreateStudentAssignment(StudentAssignment StudentAssignment)
@@ -33,13 +33,21 @@ public class StudentAssignmentService  : IStudentAssignmentService
     /// <inheritdoc/>
     public bool DeleteStudentAssignment(int Id)
     {
-        var StudentAssignment = _context.StudentAssignments.Find(Id);
-        if (StudentAssignment is null)
-            return false;
+        try
+        {
+            var StudentAssignment = GetStudentAssignmentById(Id);
+            if (StudentAssignment is null)
+                return false;
 
-        _context.Remove(StudentAssignment);
-        _context.SaveChanges();
-        return true;
+            _context.Remove(StudentAssignment);
+            _context.SaveChanges();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+       
 
     }
     /// <inheritdoc/>
@@ -48,10 +56,10 @@ public class StudentAssignmentService  : IStudentAssignmentService
         return _context.StudentAssignments.ToList();
     }
 
-    public StudentAssignment GetStudentAssignmentById(int Id)
+    public StudentAssignment? GetStudentAssignmentById(int Id)
     {
         var StudentAssignment = _context.StudentAssignments.Find(Id);
-        return StudentAssignment;
+        return StudentAssignment ?? null;
     }
     /// <inheritdoc/>
     public bool UpdateStudentAssignment(int Id, StudentAssignment StudentAssignment)

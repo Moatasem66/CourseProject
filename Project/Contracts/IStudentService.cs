@@ -5,10 +5,11 @@ namespace CourseProject.Contracts;
 public interface IStudentService
 {
     /// <summary>
-    /// method to Get Student  by id 
+    /// method to Get Student by id 
     /// </summary>
-    /// <param name="StudentId"></param>
-    Student GetStudentById(int StudentId);
+    /// <param name="Id"></param>
+    /// <returns>Student or null</returns>
+    Student? GetStudentById(int Id);
     /// <summary>
     /// method to Get List Student  
     /// </summary>
@@ -23,13 +24,14 @@ public interface IStudentService
     /// <summary>
     /// method to Update Student 
     /// </summary>
+    /// <param name="Id"></param>
     /// <param name="Student"></param>
     /// <returns>bool</returns>
     bool UpdateStudent(int Id, Student Student);
     /// <summary>
     /// method to Delete Student  
     /// </summary>
-    /// <param name="StudentId"></param>
+    /// <param name="Id"></param>
     /// <returns>bool</returns>
-    bool DeleteStudent(int StudentId);
+    bool DeleteStudent(int Id);
 }

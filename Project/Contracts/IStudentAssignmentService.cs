@@ -6,10 +6,11 @@ namespace CourseProject.Contracts;
 public interface IStudentAssignmentService
 {
     /// <summary>
-    /// method to Get StudentAssignment  by id 
+    /// method to Get StudentAssignment by id 
     /// </summary>
-    /// <param name="StudentAssignmentId"></param>
-    StudentAssignment GetStudentAssignmentById(int StudentAssignmentId);
+    /// <param name="Id"></param>
+    /// <returns>StudentAssignment or null </returns>
+    StudentAssignment? GetStudentAssignmentById(int Id);
     /// <summary>
     /// method to Get List StudentAssignment  
     /// </summary>
@@ -24,13 +25,14 @@ public interface IStudentAssignmentService
     /// <summary>
     /// method to Update StudentAssignment 
     /// </summary>
+    /// <param name="Id"></param>
     /// <param name="StudentAssignment"></param>
     /// <returns>bool</returns>
     bool UpdateStudentAssignment(int Id, StudentAssignment StudentAssignment);
     /// <summary>
     /// method to Delete StudentAssignment  
     /// </summary>
-    /// <param name="StudentAssignmentID"></param>
+    /// <param name="Id"></param>
     /// <returns>bool</returns>
-    bool DeleteStudentAssignment(int StudentAssignmentId);
+    bool DeleteStudentAssignment(int Id);
 }

@@ -37,7 +37,7 @@ public class AssignmentsController : ControllerBase
     {
         var ResponseAssignment = _assignmentService.CreateAssignment(Assignment);
 
-        return ResponseAssignment is null ? BadRequest("Error Happen ") : Ok(ResponseAssignment);
+        return ResponseAssignment is null ? BadRequest() : Ok(ResponseAssignment);
     }
     [HttpPut]
     [Route("updateassignment/{Id}")]

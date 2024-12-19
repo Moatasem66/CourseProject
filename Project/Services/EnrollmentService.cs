@@ -8,15 +8,16 @@ namespace Project.Services;
 public class EnrollmentService : IEnrollmentService
 {
     private readonly AppDBContext _context;
-    public EnrollmentService(AppDBContext dbContext)
+    public EnrollmentService(AppDBContext DBContext)
     {
-        _context = dbContext;
+        _context = DBContext;
     }
     /// <inheritdoc/>
     public Enrollment? GetEnrollmentById(int Id)
     {
         var Enrollment = _context.Enrollments.Find(Id);
-        return Enrollment is null ? null : Enrollment;
+
+        return Enrollment ?? null;
     }
     /// <inheritdoc/>
     public List<Enrollment> GetAllEnrollments()

@@ -7,6 +7,7 @@ using Project.Contracts;
 using Project.Data;
 using Newtonsoft.Json;
 using Project.Services;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Project
 {
@@ -16,13 +17,13 @@ namespace Project
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
 
             builder.Services.AddControllers().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             }); 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -31,7 +32,7 @@ namespace Project
                 o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") )
                 );
 
-            // Register Contracts and his Concrete classes
+            /// <summary>Register Contracts and his Concrete classes</summary> 
             builder.Services.AddScoped<ICourseService, CourseService>();
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
             builder.Services.AddScoped<IClassRoomService, ClassRoomService>();
@@ -44,14 +45,13 @@ namespace Project
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI(options =>
                 {
                     options.SwaggerEndpoint("/swagger/v1/swagger.json", "Course Project");
-                    options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None); // Collapse by default
+                    options.DocExpansion(DocExpansion.None); 
                 });
             }
 

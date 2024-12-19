@@ -29,7 +29,7 @@ public class ClassRoomService : IClassRoomService
     /// <inheritdoc/>
     public bool DeleteClassRoom(int Id)
     {
-        var ClassRoom = _context.ClassRooms.Find(Id);
+        var ClassRoom = GetClassRoomById(Id);
         if (ClassRoom is null)
             return false;
 
@@ -41,21 +41,21 @@ public class ClassRoomService : IClassRoomService
     /// <inheritdoc/>
     public List<ClassRoom> GetAllClassRooms()
     {
-        return _context.ClassRooms.Include(C => C.Course).ToList();
+        return _context.ClassRooms.ToList();
     }
 
-    public ClassRoom GetClassRoomById(int Id)
+    public ClassRoom? GetClassRoomById(int Id)
     {
-        //var ClassRoom = _context.ClassRooms.Find(Id);
-        var ClassRoom = _context.ClassRooms.Include(C => C.Course).FirstOrDefault(x => x.Id == Id);
-        return ClassRoom;
+        var ClassRoom = _context.ClassRooms.Find(Id);
+        
+        return ClassRoom ?? ClassRoom;
     }
     /// <inheritdoc/>
     public bool UpdateClassRoom(int Id, ClassRoom ClassRoom)
     {
         try
         {
-            var CurrentClassRoom = _context.ClassRooms.Find(Id);
+            var CurrentClassRoom = GetClassRoomById(Id);
             if (CurrentClassRoom is null)
                 return false;
 

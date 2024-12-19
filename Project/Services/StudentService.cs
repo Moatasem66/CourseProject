@@ -5,17 +5,15 @@ namespace CourseProject.Services;
 public class StudentService : IStudentService
 {
     private readonly AppDBContext _context;
-    public StudentService(AppDBContext dbContext)
+    public StudentService(AppDBContext DBContext)
     {
-        _context = dbContext;
+        _context = DBContext;
     }
     /// <inheritdoc/>
     public Student? GetStudentById(int Id)
     {
-        if (Id == 0)
-            return null;
         var Student = _context.Students.Find(Id);
-        return Student is null  ? null  : Student;
+        return Student ?? null ;
     }
     /// <inheritdoc/>
     public List<Student> GetAllStudents()
@@ -39,13 +37,22 @@ public class StudentService : IStudentService
     /// <inheritdoc/>
     public bool DeleteStudent(int Id)
     {
-        var Student = GetStudentById(Id);
-        if (Student is null)
-            return false;
+        try
+        {
+            var Student = GetStudentById(Id);
+            if (Student is null)
+                return false;
 
-        _context.Remove(Student);
-        _context.SaveChanges();
-        return true;
+            _context.Remove(Student);
+            _context.SaveChanges();
+            return true;
+
+        }
+        catch (Exception ex)
+        {
+            return false; 
+        }
+
 
     } 
     /// <inheritdoc/>

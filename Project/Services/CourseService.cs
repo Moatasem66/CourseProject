@@ -8,22 +8,24 @@ namespace Project.Services;
 public class CourseService : ICourseService
 {
     private readonly AppDBContext _context;
-    public CourseService(AppDBContext dbContext)
+    public CourseService(AppDBContext DBContext)
     {
-        _context = dbContext;
+        _context = DBContext;
     }
     /// <inheritdoc/>
     public Course? GetCourseById(int Id)
     {
         var Course = _context.Courses.Find(Id);
-        return Course is null ? null : Course;
+      
+        return Course ?? null;
     }
 
     /// <inheritdoc/>
     public List<Course> GetAllCourses()
     {
-        var result = _context.Courses.ToList();
-        return result;
+        var CoursesList = _context.Courses.ToList();
+        
+        return CoursesList;
     }
 
     /// <inheritdoc/>
